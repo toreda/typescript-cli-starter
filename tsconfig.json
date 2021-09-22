@@ -1,0 +1,36 @@
+{
+	"exclude": ["node_modules", "**/*.spec.ts", "dist/**"],
+	"include": ["./src/**.ts", "./src/**/*.ts"],
+	"filesGlob": ["./src/**.ts", "./src/**/*.ts", "!./node_modules/**"],
+	"compilerOptions": {
+		"allowUnreachableCode": false,
+		"alwaysStrict": true,
+		"declaration": true,
+		"esModuleInterop": true,
+		"isolatedModules": false,
+		"lib": ["es6", "ESNext", "dom"],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noImplicitUseStrict": false,
+		"outDir": "./dist",
+		"preserveConstEnums": true,
+		"removeComments": true,
+		"rootDir": "./src",
+		"sourceMap": true,
+		"strictBindCallApply": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": true,
+		"target": "esnext",
+		"traceResolution": false
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "commonjs"
+		}
+	},
+	"ts-jest": {
+		"compilerOptions": {
+			"module": "commonjs"
+		}
+	}
+}
