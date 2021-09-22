@@ -42,7 +42,11 @@ log.info(`	build env:	${isProd ? 'prod' : 'dev'}`);
 log.info(`	profiler: 	${argv.profiler === true ? 'enabled' : 'disabled'}`);
 const plugins = [
 	new BannerPlugin({banner: '#!/usr/bin/env node', raw: true}),
-	new ForkTsCheckerWebpackPlugin()
+	new ForkTsCheckerWebpackPlugin({
+		eslint: {
+			files: ['./src/**.ts']
+		}
+	})
 ];
 
 // Optionally run profiler.

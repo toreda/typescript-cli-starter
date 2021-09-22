@@ -1,10 +1,40 @@
 
 
-# `@toreda/demo-typescript-cli`
+# `@toreda/template-typescript-cli-app`
 
 ![CI](https://github.com/toreda/demo-typescript-cli/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_demo-typescript-cli&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_demo-typescript-cli) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_demo-typescript-cli&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_demo-typescript-cli)
 
-This repo contains a complete code 
+This repo contains a complete code
+# Yarn
+We recommend `yarn` to manage project packages. Although you can use `npm install` to add packages, pick either `yarn` or `npm` to install/manage packages, and use only that command.
+
+**Why choose only one?**
+**`yarn`** creates `yarn.lock` at the project root, while **`npm`** creates `package-lock.json`. These files separately and independently track specific package versions manages specific package versions. If both files exist, package versions in the project will be inconsistent.
+
+# `package.json`
+
+## Fixes & Workarounds
+
+### ESLint Version
+Yarn `resolutions` support selective package version overrides used by the project & dependencies.
+This template project defines `eslint` at version `^7.32.0` in `resolutions` due to a bug in `gulp-eslint`. It should be removed as soon as the bug is fixed.
+
+It looks like this:
+```json
+"resolutions": {
+	"eslint": "^7.32.0"
+},
+```
+
+As of the September 22nd, 2021 `gulp-eslint` encounters a fatal build error due to a mismatched dependency in `gulp-eslint`.
+
+This error during the `gulpfile.ts` execution:
+```bash
+[01:27:57] TypeError in plugin "gulp-eslint"
+Message:
+    Error while loading rule 'prettier/prettier': context.getPhysicalFilename is not a function
+```
+
 
 # NPM Packages
 
@@ -74,7 +104,7 @@ Adds TypeScript support to Babel env. Not strictly required but saves time by ha
 Required for `babel` to transform TypeScript constructors into vanilla JavaScript. Solves the incredibly confusing **`unexpected symbol`** runtime error which occurs when bundled code imports native TypeScript code from a bundled dependency.
 
 **Uses**
-* Activated by adding **`"@babel/transform-typescript"`** to the plugins Array in **`babel.config.json`**. 
+* Activated by adding **`"@babel/transform-typescript"`** to the plugins Array in **`babel.config.json`**.
 	* *You may notice the plugin name `@babel/transform-typescript` in the babel config does not match the NPM package name `@babel/plugin-transform-typescript`. This is correct, and extremely confusing.*
 
 **Docs**
@@ -87,14 +117,14 @@ Required for `babel` to transform TypeScript constructors into vanilla JavaScrip
 Adds Polyfills for browser features. Needed by `babel` during transpilation, based on compatibility target. `core-js` has two major branches: version 2 and version 3. Use the latest v3 `core-js` release whenever possible unless a project needs a specific v2 feature or API.
 
 **Uses**
-* **`core-js`** version specified  in **`babel.config.json`** 
+* **`core-js`** version specified  in **`babel.config.json`**
 ---
 
 ### [`cpuprofile-webpack-plugin`](https://www.npmjs.com/package/cpuprofile-webpack-plugin) `3.18.0`
 Generates CPU profiles from webpack builds to identify how CPU resources are used during builds. Optional and generally unnecessary for most builds. Useful for debugging to find out why some builds are very slow.
 
 **Uses**
-* **`core-js`** version specified  in **`babel.config.json`** 
+* **`core-js`** version specified  in **`babel.config.json`**
 
 ---
 ### [`eslint`](https://www.npmjs.com/package/eslint) `4.0.2`
@@ -103,6 +133,14 @@ JavaScript & TypeScript linter which flags inconsistent formatting and styles.
 **Uses**
 * **`gulpfile.ts`**
 * Running command **`yarn lint`** or **`yarn eslint`**
+---
+
+### [`fork-ts-checker-webpack-plugin`](https://www.npmjs.com/package/fork-ts-checker-webpack-plugin) `6.3.3`
+Reduce build time by running the TypeScript type checker on a separate process.
+
+**Uses**
+* **`gulpfile.ts`**
+* **`webpack.config.ts`**
 ---
 
 ### [`gulp`](https://www.npmjs.com/package/gulp) `4.0.1`
@@ -115,7 +153,7 @@ Streaming task-based build system.
 ---
 
 ### [`gulp-eslint`](https://www.npmjs.com/package/gulp-eslint) `6.0.0`
-Adds support for gulpfiles to call eslint functions directly in code without executing system commands. 
+Adds support for gulpfiles to call eslint functions directly in code without executing system commands.
 
 **Uses**
 * **`gulpfile.ts`**
@@ -123,17 +161,36 @@ Adds support for gulpfiles to call eslint functions directly in code without exe
 ---
 
 ### [`@toreda/build-tools`](https://www.npmjs.com/package/@toreda/build-tools) `0.3.2`
-Build scripts and Gulp pipelines for TypeScript project. Capable of building NPM packages, libraries, and command line apps. Acts as a Gulp wrapper, providing a single consistent build pipeline used by **`@toreda`** NPM projects. 
+Build scripts and Gulp pipelines for TypeScript project. Capable of building NPM packages, libraries, and command line apps. Acts as a Gulp wrapper, providing a single consistent build pipeline used by **`@toreda`** NPM projects.
 
 *Note: While this package can make your life easier it's not required for this package, but it's used in the default setup.*
 
 **Uses**
 * **`gulpfile.ts`**
- 
+
+---
+
+### [`@toreda/eslint-config`](https://www.npmjs.com/package/@toreda/eslint-config) `2.2.0`
+Toreda's TypeScript ESLint configuration and ruleset for ESLint.
+
+While standard for Toreda TypeScript projects, you can define any ruleset you'd like.
+
+**Change Toreda Ruleset**
+Edit `.eslintrc.js` and remove `extends`, or change the  `extends` value to change the ESLint ruleset used.
+```json
+extends: ['@toreda/eslint-config'],
+```
+
+**Override Individual Rules**
+Add Individual rules to `rules: {...}` in `.eslintrc.js` to change the behavior of that rule only. The rule value set overrides both the default value and the Toreda value for that rule.
+
+**Uses**
+* `package.json`
+
 ---
 
 ### [`@toreda/prettier-config`](https://www.npmjs.com/package/@toreda/prettier-config) `1.0.1`
-Ruleset config to enforce Toreda's organization-wide formatting standard. Any prettier ruleset can be used in your project and this is not required for your own projects. 
+Ruleset config to enforce Toreda's organization-wide formatting standard. Any prettier ruleset can be used in your project and this is not required for your own projects.
 
 If you removed also remove this key from `package.json`:
 
@@ -176,14 +233,14 @@ Type definitions for **`webpack`**. Package version generally always match the *
 
 ---
 ### [`@types/yargs`](https://www.npmjs.com/package/@types/yargs) `17.0.2`
-Adds type support for **`yargs`** function calls. 
+Adds type support for **`yargs`** function calls.
 
 
 
 
-If you encounter build errors after installing `@types/yargs` it likely means code somewhere in the project did not respect `yargs` types.  
+If you encounter build errors after installing `@types/yargs` it likely means code somewhere in the project did not respect `yargs` types.
 
-Each package export without type definitions becomes an implicit `any` type. This behavior mimics vanilla JavaScript and effectively disables type checking (this is bad). 
+Each package export without type definitions becomes an implicit `any` type. This behavior mimics vanilla JavaScript and effectively disables type checking (this is bad).
 
 **Uses**
 * **`src/cli.ts`**
@@ -196,7 +253,7 @@ Type definitions for **`webpack`**.
 * **`webpack.config.ts`**
 ---
 ### [`webpack-node-externals`](https://www.npmjs.com/package/webpack-node-externals) `3.0.0`
-Adds support for defining external packages to use during build that are not included in bundle. Extremely useful when deploying bundles to platforms with libraries available. For example, AWS Lambda functions require `aws-sdk` during build and development, but the Lambda run-time environment makes `aws-sdk` to all Lambda functions. Using `webpack-node-externals` makes it easy to rely on `aws-sdk` during the build without adding redundant and unused code to the final bundle. 
+Adds support for defining external packages to use during build that are not included in bundle. Extremely useful when deploying bundles to platforms with libraries available. For example, AWS Lambda functions require `aws-sdk` during build and development, but the Lambda run-time environment makes `aws-sdk` to all Lambda functions. Using `webpack-node-externals` makes it easy to rely on `aws-sdk` during the build without adding redundant and unused code to the final bundle.
 
 *Excluding run-time packages is different than excluding devDependencies which may only used during build & bundling.*
 
@@ -206,10 +263,10 @@ Adds support for defining external packages to use during build that are not inc
 
 ---
 ### [`jest`](https://www.npmjs.com/package/jest) `27.2.1`
-Intuitive testing framework with integrated code coverage and report formatting. 
+Intuitive testing framework with integrated code coverage and report formatting.
 
 **Why include this package?**
-Jest is included in the project's **`package.json`** as a **`devDependency`**, rather than relying on the jest command being available for a couple important reasons. 
+Jest is included in the project's **`package.json`** as a **`devDependency`**, rather than relying on the jest command being available for a couple important reasons.
 
 Using Jest from **`package.json`** has a few benefits:
 * Package guaranteed available. No guessing whether it's installed or what version is installed.
@@ -223,11 +280,24 @@ Using Jest from **`package.json`** has a few benefits:
 **Docs**
 * [Getting Started with Jest](https://jestjs.io/docs/getting-started)
 
-### `ts-jest`
+---
+### [`ts-node`](https://www.npmjs.com/package/ts-node) `10.2.1`
+Run node scripts directly from the command line without transpiling.
+
+**Docs**
+* [Configuring TS Node](https://typestrong.org/ts-node/docs/configuration/)
+* [How to run TypeScript Scripts with ts-node](https://www.digitalocean.com/community/tutorials/typescript-running-typescript-ts-node)
+
+---
+
+### [`ts-jest`](https://www.npmjs.com/package/ts-jest) `27.0.5`
 Run TypeScript test files directly from Jest.
 
 **Uses**
 * All **`.spec.ts`** files in **`tests/`**
+
+**Docs**
+* [Get started with TypeScript and Jest using ts-jest](https://kulshekhar.github.io/ts-jest/docs/)
 
 # License
 
