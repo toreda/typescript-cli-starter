@@ -2,7 +2,9 @@
 
 # `@toreda/template-typescript-cli-app`
 
-![CI](https://github.com/toreda/demo-typescript-cli/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_demo-typescript-cli&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_demo-typescript-cli) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=toreda_demo-typescript-cli&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_demo-typescript-cli)
+![Toreda](https://content.toreda.com/logo/toreda-logo.png)
+
+![CI](https://github.com/toreda/template-typescript-cli-app/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_template-typescript-cli-app&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_template-typescript-cli-app) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=template-typescript-cli-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_template-typescript-cli-app)
 
 This repo contains a complete code
 # Yarn

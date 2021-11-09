@@ -1,49 +1,55 @@
-import * as webpackConfig from './webpack.config';
-
-import {series, src} from 'gulp';
+import {Levels, Log} from '@toreda/log';
 
 import {Build} from '@toreda/build-tools';
 import {EventEmitter} from 'events';
-import {Log} from '@toreda/log';
+import {series} from 'gulp';
+// Using require in a ts file is bad practice and not ideal here.
 import {webpack} from 'webpack';
-import yargs from 'yargs';
-
-const argv = yargs.argv;
-const eslint = require('gulp-eslint');
-const log = new Log();
+import webpackConfig from './webpack.config';
 
 const build: Build = new Build({
 	events: new EventEmitter(),
-	log: log
+	log: new Log({
+		consoleEnabled: true,
+		globalLevel: Levels.ALL
+	})
 });
 
+/**
+ * Run ESLint using a helper from `@toreda/build-tools`.
+ * @returns
+ */
 function runLint(): Promise<NodeJS.ReadWriteStream> {
-	return (
-		src(['src/**'])
-			// eslint() attaches the lint output to the "eslint" property
-			// of the file object so it can be used by other modules.
-			.pipe(eslint())
-			// eslint.format() outputs the lint results to the console.
-			// Alternatively use eslint.formatEach() (see Docs).
-			.pipe(eslint.format())
-			// To have the process exit with an error code (1) on
-			// lint error, return the stream and pipe to failAfterError last.
-			.pipe(eslint.failAfterError())
-	);
+	return build.gulpSteps.lint({
+		formatterId: 'stylish',
+		srcPatterns: ['src/**']
+	});
 }
 
+/**
+ * Create dist directory before build.
+ * @returns
+ */
 function createDist(): Promise<NodeJS.ReadWriteStream> {
-	return build.gulpSteps.createDir('./dist');
+	return build.gulpSteps.createDir('./dist', true);
 }
 
+/**
+ * Remove everything in dist directory before build starts.
+ * @returns
+ */
 function cleanDist(): Promise<NodeJS.ReadWriteStream> {
-	return build.gulpSteps.cleanDir('./dist');
+	return build.gulpSteps.cleanDir('./dist', true);
 }
 
 function buildSrc(): Promise<NodeJS.ReadWriteStream> {
 	return build.run.typescript('./dist', 'tsconfig.json');
 }
 
+/**
+ * Build the project webpack bundle.
+ * @returns
+ */
 function runWebpack(): any {
 	return new Promise((resolve, reject) => {
 		webpack(webpackConfig, (err, stats) => {

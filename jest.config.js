@@ -9,11 +9,6 @@ module.exports = {
 		'coverage/',
 		'webpack.config.js'
 	],
-	globals: {
-		'ts-jest': {
-			isolatedModules: true
-		}
-	},
 	moduleFileExtensions: ['ts', 'js', 'json'],
 	moduleNameMapper: {'^src/(.*)': '<rootDir>/src/$1'},
 	testEnvironment: 'node',

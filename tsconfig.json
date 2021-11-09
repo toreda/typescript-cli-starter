@@ -8,7 +8,7 @@
 		"declaration": true,
 		"esModuleInterop": true,
 		"isolatedModules": false,
-		"lib": ["es6", "ESNext", "dom"],
+		"lib": ["es6", "ES2015", "ES2017", "ES2017.TypedArrays"],
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"noImplicitUseStrict": false,
@@ -20,17 +20,21 @@
 		"strictBindCallApply": true,
 		"strictNullChecks": true,
 		"strictPropertyInitialization": true,
-		"target": "esnext",
+		"target": "es2015",
 		"traceResolution": false
 	},
-	"ts-node": {
+	"ts-jest": {
+		"module": "commonjs",
 		"compilerOptions": {
-			"module": "commonjs"
+		"declaration": false,
+		"isolatedModules": true,
+		"sourceMap": false
 		}
 	},
-	"ts-jest": {
+	"ts-node": {
+		"module": "commonjs",
 		"compilerOptions": {
-			"module": "commonjs"
+			"sourceMap": false
 		}
 	}
 }

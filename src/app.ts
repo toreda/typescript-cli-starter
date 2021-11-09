@@ -1,3 +1,5 @@
+import {AppConfig} from './app/config';
+import {CliArgs} from './cli/args';
 import {Log} from '@toreda/log';
 
 /**
@@ -5,8 +7,19 @@ import {Log} from '@toreda/log';
  */
 export class App {
 	public readonly log: Log;
+	public readonly cfg: AppConfig;
 
-	constructor(log: Log) {
+	constructor(args: CliArgs, log: Log) {
 		this.log = log;
+
+		this.cfg = new AppConfig(args, log);
+	}
+
+	public async start(): Promise<App> {
+		this.log.info(`CLI App starting..`);
+		// Perform startup work or processing calls here.
+
+		this.log.info(`CLI App started.`);
+		return this;
 	}
 }

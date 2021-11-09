@@ -4,5 +4,14 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"aaron-bond.better-comments",
+			"dbaeumer.vscode-eslint",
+			"sonarsource.sonarlint-vscode",
+			"esbenp.prettier-vscode",
+			"eg2.vscode-npm-script"
+		]
+	}
 }

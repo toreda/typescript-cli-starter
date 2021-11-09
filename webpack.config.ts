@@ -1,6 +1,7 @@
+import {BannerPlugin, Configuration} from 'webpack';
 import {Levels, Log} from '@toreda/log';
 
-import {BannerPlugin} from 'webpack';
+import CpuProfileWebpackPlugin from 'cpuprofile-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import Path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
@@ -11,13 +12,13 @@ const log = new Log();
 log.activateDefaultConsole();
 log.setGlobalLevel(Levels.INFO | Levels.DEBUG);
 
-export interface CliArgs {
+interface BuildCmdArgs {
 	[k: string]: unknown;
 	env: string;
 	profiler: boolean;
 }
 
-const argv: CliArgs = yargs(process.argv.slice(2))
+const argv = yargs(process.argv.slice(2))
 	.options({
 		profiler: {
 			type: 'boolean',
@@ -32,7 +33,7 @@ const argv: CliArgs = yargs(process.argv.slice(2))
 			describe: 'Target environment build'
 		}
 	})
-	.showHelpOnFail(true).argv as CliArgs;
+	.showHelpOnFail(true).argv as BuildCmdArgs;
 
 const isProd = argv.env === 'dev' ? false : true;
 
@@ -42,11 +43,7 @@ log.info(`	build env:	${isProd ? 'prod' : 'dev'}`);
 log.info(`	profiler: 	${argv.profiler === true ? 'enabled' : 'disabled'}`);
 const plugins = [
 	new BannerPlugin({banner: '#!/usr/bin/env node', raw: true}),
-	new ForkTsCheckerWebpackPlugin({
-		eslint: {
-			files: ['./src/**.ts']
-		}
-	})
+	new ForkTsCheckerWebpackPlugin()
 ];
 
 // Optionally run profiler.
@@ -56,16 +53,17 @@ if (argv.profiler === true) {
 	// even when the profiler flag is false. There's something wonky
 	// in the profiler package. Moved to a dynamic import so has no
 	// way to execute unless invoked by setting profiler flag to true.
-	import('cpuprofile-webpack-plugin')
-		.then((result) => {
-			plugins.push(new result());
+/* 	import('cpuprofile-webpack-plugin')
+		.then((profilePlugin: CpuProfileWebpackPlugin) => {
+			const plugin = new profilePlugin();
+			plugins.push(plugin);
 		})
 		.catch((e) => {
 			console.error(`Failed to import CPU webpack profiler`);
-		});
+		}); */
 }
 
-module.exports = {
+const config: Configuration = {
 	mode: isProd ? 'production' : 'development',
 	devtool: isProd ? undefined : 'inline-source-map',
 	entry: './src/cli.ts',
@@ -84,11 +82,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js']
 	},
-	externals: [
-		WebpackNodeExternals({
-			modulesDir: Path.resolve(__dirname, '../../../node_modules')
-		})
-	],
+	externals: [],
 	module: {
 		rules: [
 			{
@@ -160,3 +154,5 @@ module.exports = {
 	},
 	plugins: plugins
 };
+
+export default config;
