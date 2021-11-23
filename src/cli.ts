@@ -1,5 +1,5 @@
 import {App} from './app';
-import {CliArgs} from './cli/args';
+import type {CliArgs} from './cli/args';
 import {Log} from '@toreda/log';
 import yargs from 'yargs';
 

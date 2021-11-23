@@ -1,5 +1,5 @@
 import {AppConfig} from './app/config';
-import {CliArgs} from './cli/args';
+import type {CliArgs} from './cli/args';
 import {Log} from '@toreda/log';
 
 /**

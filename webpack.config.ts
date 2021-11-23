@@ -1,11 +1,9 @@
 import {BannerPlugin, Configuration} from 'webpack';
 import {Levels, Log} from '@toreda/log';
 
-import CpuProfileWebpackPlugin from 'cpuprofile-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import Path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
-import WebpackNodeExternals from 'webpack-node-externals';
 import yargs from 'yargs';
 
 const log = new Log();
@@ -46,23 +44,6 @@ const plugins = [
 	new ForkTsCheckerWebpackPlugin()
 ];
 
-// Optionally run profiler.
-if (argv.profiler === true) {
-	log.info('------ Running Profiler ------');
-	// Note: Just referencing the profiler seems to enable it,
-	// even when the profiler flag is false. There's something wonky
-	// in the profiler package. Moved to a dynamic import so has no
-	// way to execute unless invoked by setting profiler flag to true.
-/* 	import('cpuprofile-webpack-plugin')
-		.then((profilePlugin: CpuProfileWebpackPlugin) => {
-			const plugin = new profilePlugin();
-			plugins.push(plugin);
-		})
-		.catch((e) => {
-			console.error(`Failed to import CPU webpack profiler`);
-		}); */
-}
-
 const config: Configuration = {
 	mode: isProd ? 'production' : 'development',
 	devtool: isProd ? undefined : 'inline-source-map',
@@ -74,7 +55,7 @@ const config: Configuration = {
 		 * impact for project bundling thousands of modules.
 		 * */
 		pathinfo: false,
-		filename: 'shard.min.js',
+		filename: 'template-app.min.js',
 		path: Path.join(__dirname, 'dist'),
 		libraryTarget: 'commonjs',
 		library: 'shard'

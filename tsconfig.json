@@ -17,6 +17,7 @@
 		"removeComments": true,
 		"rootDir": "./src",
 		"sourceMap": true,
+		"strictFunctionTypes": true,
 		"strictBindCallApply": true,
 		"strictNullChecks": true,
 		"strictPropertyInitialization": true,
@@ -28,7 +29,8 @@
 		"compilerOptions": {
 		"declaration": false,
 		"isolatedModules": true,
-		"sourceMap": false
+		"sourceMap": false,
+		"skipLibCheck": true
 		}
 	},
 	"ts-node": {

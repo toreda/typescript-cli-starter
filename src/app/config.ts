@@ -6,6 +6,12 @@ import type {Env} from '../env';
 import {Log} from '@toreda/log';
 import type {Strong} from '@toreda/strong-types';
 
+/**
+ * Config data created automatically on app start. CLI arguments are used first,
+ * then app defaults for any property not provided.
+ *
+ * @category Config
+ */
 export class AppConfig extends StrongMap {
 	/** App execution environment: dev, qa, stage, prod. */
 	public readonly env: Strong<Env>;

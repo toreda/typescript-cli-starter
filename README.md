@@ -17,26 +17,8 @@ We recommend `yarn` to manage project packages. Although you can use `npm instal
 
 ## Fixes & Workarounds
 
-### ESLint Version
-Yarn `resolutions` support selective package version overrides used by the project & dependencies.
-This template project defines `eslint` at version `^7.32.0` in `resolutions` due to a bug in `gulp-eslint`. It should be removed as soon as the bug is fixed.
-
-It looks like this:
-```json
-"resolutions": {
-	"eslint": "^7.32.0"
-},
-```
-
-As of the September 22nd, 2021 `gulp-eslint` encounters a fatal build error due to a mismatched dependency in `gulp-eslint`.
-
-This error during the `gulpfile.ts` execution:
-```bash
-[01:27:57] TypeError in plugin "gulp-eslint"
-Message:
-    Error while loading rule 'prettier/prettier': context.getPhysicalFilename is not a function
-```
-
+### Github NPM Package CVEs
+Yarn `resolutions` support selective package version overrides used by the project & dependencies. The `resolutions` section includes several packages flagged by Github as security vulnerabilities.
 
 # NPM Packages
 
