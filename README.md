@@ -1,16 +1,26 @@
 
+![Toreda](https://content.toreda.com/logo/toreda-logo.png)
+
+![CI](https://img.shields.io/github/workflow/status/toreda/template-typescript-cli-app/CI?style=for-the-badge) [![Coverage](https://img.shields.io/sonar/coverage/toreda_template-typescript-cli-app?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=toreda_template-typescript-cli-app) ![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/toreda_template-typescript-cli-app?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge) ![GitHub issues](https://img.shields.io/github/issues/toreda/template-typescript-cli-app?style=for-the-badge)
+
+
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/toreda/template-typescript-cli-app/master?style=for-the-badge)
+![GitHub Release Date](https://img.shields.io/github/release-date/toreda/template-typescript-cli-app?style=for-the-badge)
+
+![license](https://img.shields.io/github/license/toreda/template-typescript-cli-app?style=for-the-badge)
+
+&nbsp;
 
 # `@toreda/template-typescript-cli-app`
 
-![Toreda](https://content.toreda.com/logo/toreda-logo.png)
+Complete command line example app shell.
 
-![CI](https://github.com/toreda/template-typescript-cli-app/workflows/CI/badge.svg?branch=master) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=toreda_template-typescript-cli-app&metric=coverage)](https://sonarcloud.io/dashboard?id=toreda_template-typescript-cli-app) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=template-typescript-cli-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=toreda_template-typescript-cli-app)
+&nbsp;
 
-This repo contains a complete code
 # Yarn
 We recommend `yarn` to manage project packages. Although you can use `npm install` to add packages, pick either `yarn` or `npm` to install/manage packages, and use only that command.
 
-**Why choose only one?**
+**Why choose one?**
 **`yarn`** creates `yarn.lock` at the project root, while **`npm`** creates `package-lock.json`. These files separately and independently track specific package versions manages specific package versions. If both files exist, package versions in the project will be inconsistent.
 
 # `package.json`
@@ -23,7 +33,7 @@ Yarn `resolutions` support selective package version overrides used by the proje
 # NPM Packages
 
 ## `dependencies` (`package.json`)
-### [`@toreda/log`](https://www.npmjs.com/package/@toreda/log) `0.6.3`
+### [`@toreda/log`](https://www.npmjs.com/package/@toreda/log) `0.6.9`
 TypeScript logger with small footprint & configurable transports.
 **Uses**
 * `gulpfile.ts`
@@ -62,9 +72,8 @@ Core Babel package needed to perform any Babel operations. The build script uses
 
 ---
 
-### [`@babel/preset-env`](https://www.npmjs.com/package/@babel/preset-env) `7.15.6`
-Adds presets to Babel environment.
-
+### [`@babel/preset-env`](https://www.npmjs.com/package/@babel/preset-env) `7.16.7`
+Babel 7+ package with base env settings.
 
 **Uses**
 * **`babel.config.json`**
@@ -73,19 +82,8 @@ Adds presets to Babel environment.
 * **[Official docs for @babel/preset-env](https://babel.dev/docs/en/babel-preset-env)**
 
 ---
-
-### [`@babel/preset-typescript`](https://www.npmjs.com/package/@babel/preset-typescript) `7.15.0`
-Adds TypeScript support to Babel env. Not strictly required but saves time by handling time consuming build edge cases.
-
-**Uses**
-* **`babel.config.json`**
-
-**Docs**
-* **[Official docs for @babel/preset-typescript](https://babeljs.io/docs/en/babel-preset-typescript)**
-
----
-### [`@babel/plugin-transform-typescript`](https://www.npmjs.com/package/@babel/plugin-transform-typescript) `7.15.4`
-Required for `babel` to transform TypeScript constructors into vanilla JavaScript. Solves the incredibly confusing **`unexpected symbol`** runtime error which occurs when bundled code imports native TypeScript code from a bundled dependency.
+### [`@babel/preset-typescript`](https://www.npmjs.com/package/@babel/preset-typescript) `7.16.7`
+Contains TypeScript transform plugin `@babel/plugin-transform-typescript` and other TypeScript transformation plugins.
 
 **Uses**
 * Activated by adding **`"@babel/transform-typescript"`** to the plugins Array in **`babel.config.json`**.
@@ -97,37 +95,45 @@ Required for `babel` to transform TypeScript constructors into vanilla JavaScrip
 
 ---
 
-### [`core-js`](https://www.npmjs.com/package/core-js) `3.18.0`
+### [`core-js`](https://www.npmjs.com/package/core-js) `3.20.1`
 Adds Polyfills for browser features. Needed by `babel` during transpilation, based on compatibility target. `core-js` has two major branches: version 2 and version 3. Use the latest v3 `core-js` release whenever possible unless a project needs a specific v2 feature or API.
 
-**Uses**
-* **`core-js`** version specified  in **`babel.config.json`**
----
-
-### [`cpuprofile-webpack-plugin`](https://www.npmjs.com/package/cpuprofile-webpack-plugin) `3.18.0`
-Generates CPU profiles from webpack builds to identify how CPU resources are used during builds. Optional and generally unnecessary for most builds. Useful for debugging to find out why some builds are very slow.
 
 **Uses**
 * **`core-js`** version specified  in **`babel.config.json`**
 
 ---
-### [`eslint`](https://www.npmjs.com/package/eslint) `4.0.2`
+### [`eslint`](https://www.npmjs.com/package/eslint) `8.6.0`
 JavaScript & TypeScript linter which flags inconsistent formatting and styles.
 
 **Uses**
 * **`gulpfile.ts`**
 * Running command **`yarn lint`** or **`yarn eslint`**
----
 
-### [`fork-ts-checker-webpack-plugin`](https://www.npmjs.com/package/fork-ts-checker-webpack-plugin) `6.3.3`
-Reduce build time by running the TypeScript type checker on a separate process.
+---
+### [`eslint-config-prettier`](https://www.npmjs.com/package/eslint-config-prettier) `8.3.0`
+Turns off all rules that are unnecessary or might conflict with [Prettier].
+
+**Uses**
+* **`gulpfile.ts`**
+* Running command **`yarn lint`** or **`yarn eslint`**
+---
+### [`eslint-plugin-prettier`](https://www.npmjs.com/package/eslint-plugin-prettier) `4.0.0`
+Runs Prettier as an ESLint rule and reports differences as individual ESLint issues.
+
+**Uses**
+* **`gulpfile.ts`**
+* Running command **`yarn lint`** or **`yarn eslint`**
+---
+### [`fork-ts-checker-webpack-plugin`](https://www.npmjs.com/package/fork-ts-checker-webpack-plugin) `6.5.0`
+Speeds up TypeScript type checking and `ESLint` linting (by moving each to a separate process)
 
 **Uses**
 * **`gulpfile.ts`**
 * **`webpack.config.ts`**
 ---
 
-### [`gulp`](https://www.npmjs.com/package/gulp) `4.0.1`
+### [`gulp`](https://www.npmjs.com/package/gulp) `4.0.2`
 Streaming task-based build system.
 
 **Uses**
@@ -136,15 +142,7 @@ Streaming task-based build system.
 
 ---
 
-### [`gulp-eslint`](https://www.npmjs.com/package/gulp-eslint) `6.0.0`
-Adds support for gulpfiles to call eslint functions directly in code without executing system commands.
-
-**Uses**
-* **`gulpfile.ts`**
-* Running command **`yarn build`** or **`yarn gulp`**
----
-
-### [`@toreda/build-tools`](https://www.npmjs.com/package/@toreda/build-tools) `0.3.2`
+### [`@toreda/build-tools`](https://www.npmjs.com/package/@toreda/build-tools) `0.6.0`
 Build scripts and Gulp pipelines for TypeScript project. Capable of building NPM packages, libraries, and command line apps. Acts as a Gulp wrapper, providing a single consistent build pipeline used by **`@toreda`** NPM projects.
 
 *Note: While this package can make your life easier it's not required for this package, but it's used in the default setup.*
@@ -187,7 +185,7 @@ If you removed also remove this key from `package.json`:
 
 ---
 
-### [`@toreda/types`](https://www.npmjs.com/package/@toreda/types) `1.3.0`
+### [`@toreda/types`](https://www.npmjs.com/package/@toreda/types) `2.5.0`
 Basic and common type definitions used in `@toreda` projects.
 
 **Use**
@@ -202,21 +200,21 @@ Type definitions for Gulp.
 * `gulpfile.ts`
 
 ---
-### [`@types/node`](https://www.npmjs.com/package/@types/nodee) `16.9.4`
+### [`@types/node`](https://www.npmjs.com/package/@types/nodee) `17.0.5`
 Type definitions for Node functions.
 
 **Uses**
 * Helpful types on import in any project `.ts` file.
 
 ---
-### [`@types/webpack`](https://www.npmjs.com/package/@types/webpack) `5.53.0`
+### [`@types/webpack`](https://www.npmjs.com/package/@types/webpack) `5.28.0`
 Type definitions for **`webpack`**. Package version generally always match the **`webpack`** package version to eliminate bugs and API discrepancies.
 
 **Uses**
 * **`webpack.config.ts`**
 
 ---
-### [`@types/yargs`](https://www.npmjs.com/package/@types/yargs) `17.0.2`
+### [`@types/yargs`](https://www.npmjs.com/package/@types/yargs) `17.0.8`
 Adds type support for **`yargs`** function calls.
 
 
@@ -230,7 +228,7 @@ Each package export without type definitions becomes an implicit `any` type. Thi
 * **`src/cli.ts`**
 
 ---
-### [`webpack`](https://www.npmjs.com/package/webpack) `5.53.0`
+### [`webpack`](https://www.npmjs.com/package/webpack) `5.65.0`
 Type definitions for **`webpack`**.
 
 **Uses**
@@ -246,7 +244,7 @@ Adds support for defining external packages to use during build that are not inc
 
 
 ---
-### [`jest`](https://www.npmjs.com/package/jest) `27.2.1`
+### [`jest`](https://www.npmjs.com/package/jest) `27.4.5`
 Intuitive testing framework with integrated code coverage and report formatting.
 
 **Why include this package?**
@@ -265,7 +263,36 @@ Using Jest from **`package.json`** has a few benefits:
 * [Getting Started with Jest](https://jestjs.io/docs/getting-started)
 
 ---
-### [`ts-node`](https://www.npmjs.com/package/ts-node) `10.2.1`
+### [`jest-sonar-reporter`](https://www.npmjs.com/package/jest-sonar-reporter) `2.0.0`
+Intuitive testing framework with integrated code coverage and report formatting.
+
+**Why include this package?**
+Processes jest execution results and sends to a SonarQube instance. Target SonarQube server details set in `sonar-project.properties`
+
+**Uses**
+* All **`.spec.ts`** test files in **`./tests`**.
+
+**Docs**
+* [Getting Started with Jest](https://jestjs.io/docs/getting-started)
+* [jest-sonar-reporter Github](https://github.com/3dmind/jest-sonar-reporter)
+
+---
+
+### [`terser-webpack-plugin`](https://www.npmjs.com/package/terser-webpack-plugin) `5.3.0`
+Uglify replacement focused on better speed and better performance.
+
+**Uses**
+* All **`.spec.ts`** files in **`tests/`**
+
+---
+### [`ts-loader`](https://www.npmjs.com/package/ts-node) `9.2.6`
+Execute `TypeScript` files without transpiling first.
+
+**Uses**
+* Any time in development when running or testing TypeScript files frequently.
+
+---
+### [`ts-node`](https://www.npmjs.com/package/ts-node) `10.4.0`
 Run node scripts directly from the command line without transpiling.
 
 **Docs**
@@ -274,7 +301,7 @@ Run node scripts directly from the command line without transpiling.
 
 ---
 
-### [`ts-jest`](https://www.npmjs.com/package/ts-jest) `27.0.5`
+### [`ts-jest`](https://www.npmjs.com/package/ts-jest) `27.1.2`
 Run TypeScript test files directly from Jest.
 
 **Uses**
@@ -283,6 +310,28 @@ Run TypeScript test files directly from Jest.
 **Docs**
 * [Get started with TypeScript and Jest using ts-jest](https://kulshekhar.github.io/ts-jest/docs/)
 
-# License
+---
+
+### [`typescript`](https://www.npmjs.com/package/typescript) `4.5.4`
+TypeScript package support with `tsconfig.json`.
+
+**Uses**
+* Running `yarn build`
+* Running `webpack`.
+* Using `ts-loader`
+
+
+&nbsp;
+
+# Legal
+
+## License
 
 [MIT](LICENSE) &copy; Toreda, Inc.
+
+&nbsp;
+
+## Copyright
+Copyright &copy; 2019 - 2022 Toreda, Inc. All Rights Reserved.
+
+https://www.toreda.com
