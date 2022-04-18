@@ -58,7 +58,7 @@ const config: Configuration = {
 		filename: 'template-app.min.js',
 		path: Path.join(__dirname, 'dist'),
 		libraryTarget: 'commonjs',
-		library: 'shard'
+		library: 'app'
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js']
