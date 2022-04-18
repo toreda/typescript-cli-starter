@@ -1,5 +1,5 @@
 import {App} from '../src/app';
-import {CliArgs} from '../src/cli/args';
+import type {CliArgs} from '../src/cli/args';
 import {Log} from '@toreda/log';
 
 describe('App', () => {

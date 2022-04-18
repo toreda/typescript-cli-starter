@@ -15,6 +15,6 @@ module.exports = {
 	testPathIgnorePatterns: ['/node_modules/'],
 	testRegex: '(/__tests__/.*|(\\.|/)(spec))\\.ts$',
 	testResultsProcessor: 'jest-sonar-reporter',
-	transform: {'^.+\\.tsx?$': 'ts-jest', '^.+\\.jsx?$': 'babel-jest'},
+	transform: {'^.+\\.(t|j)sx?$': '@swc/jest'},
 	transformIgnorePatterns: ['node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)']
 };
