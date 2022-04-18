@@ -1,13 +1,13 @@
 
 ![Toreda](https://content.toreda.com/logo/toreda-logo.png)
 
-![CI](https://img.shields.io/github/workflow/status/toreda/template-typescript-cli-app/CI?style=for-the-badge) [![Coverage](https://img.shields.io/sonar/coverage/toreda_template-typescript-cli-app?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=toreda_template-typescript-cli-app) ![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/toreda_template-typescript-cli-app?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge) ![GitHub issues](https://img.shields.io/github/issues/toreda/template-typescript-cli-app?style=for-the-badge)
 
+[![CI](https://img.shields.io/github/workflow/status/toreda/template-typescript-cli-app/CI?style=for-the-badge)](https://github.com/toreda/template-typescript-cli-app/actions) [![Coverage](https://img.shields.io/sonar/coverage/toreda_template-typescript-cli-app?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/project/activity?graph=coverage&id=toreda_template-typescript-cli-app) [![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/toreda_template-typescript-cli-app?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=toreda_template-typescript-cli-app)
 
-![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/toreda/template-typescript-cli-app/master?style=for-the-badge)
-![GitHub Release Date](https://img.shields.io/github/release-date/toreda/template-typescript-cli-app?style=for-the-badge)
+[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/toreda/template-typescript-cli-app/master?style=for-the-badge)](https://github.com/toreda/template-typescript-cli-app/releases/latest) [![GitHub Release Date](https://img.shields.io/github/release-date/toreda/template-typescript-cli-app?style=for-the-badge)](https://github.com/toreda/template-typescript-cli-app/releases/latest) [![GitHub issues](https://img.shields.io/github/issues/toreda/template-typescript-cli-app?style=for-the-badge)](https://github.com/toreda/template-typescript-cli-app/issues)
 
-![license](https://img.shields.io/github/license/toreda/template-typescript-cli-app?style=for-the-badge)
+ [![license](https://img.shields.io/github/license/toreda/template-typescript-cli-app?style=for-the-badge)](https://github.com/toreda/template-typescript-cli-app/blob/master/LICENSE)
+
 
 &nbsp;
 

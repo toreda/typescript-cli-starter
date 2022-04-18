@@ -67,26 +67,26 @@ const config: Configuration = {
 	module: {
 		rules: [
 			{
-				// Include ts, tsx, js, and jsx files.
-				test: /\.(ts|js)x?$/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'ts-loader',
-						options: {
-							logLevel: 'info',
-							happyPackMode: true,
-							transpileOnly: true
+				test: /\.m?js$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					// Use `.swcrc` to configure swc
+					loader: 'swc-loader'
+				}
+			},
+			{
+				test: /\.ts$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'swc-loader',
+					options: {
+						jsc: {
+							parser: {
+								syntax: 'typescript'
+							}
 						}
-					},
-					{
-						loader: 'cache-loader',
-						options: {
-							cacheDirectory: Path.resolve('.webpackCache')
-						}
-					},
-					'babel-loader'
-				]
+					}
+				}
 			}
 		]
 	},
