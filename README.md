@@ -33,7 +33,7 @@ Yarn `resolutions` support selective package version overrides used by the proje
 # NPM Packages
 
 ## `dependencies` (`package.json`)
-### [`@toreda/log`](https://www.npmjs.com/package/@toreda/log) `0.6.9`
+### [`@toreda/log`](https://www.npmjs.com/package/@toreda/log) `0.6.16`
 TypeScript logger with small footprint & configurable transports.
 **Uses**
 * `gulpfile.ts`
@@ -41,7 +41,7 @@ TypeScript logger with small footprint & configurable transports.
 * `@toreda/strong-types`
 
 ---
-### [`yargs`](https://www.npmjs.com/package/yargs) `17.1.1`
+### [`yargs`](https://www.npmjs.com/package/yargs) `17.4.1`
 Parse command-line arguments.
 
 ## `devDependencies` (`package.json`)
@@ -59,51 +59,24 @@ npm install @toreda/types --save-dev
 ```
 ---
 
-### [`@babel/core`](https://www.npmjs.com/package/@babel/core) `7.15.5`
-Core Babel package needed to perform any Babel operations. The build script uses `babel` to transpile all TypeScript in the project before bundling the result. Jest also relies on `ts-jest` to run TypeScript test files, which relies on `@babel/core`
+### [`@swc/core`](https://www.npmjs.com/package/@swc/core) `1.2.170`
+Core package for the SWC (Speedy Web Compiler). The super-fast TypeScript & JavaScript compiler written in Rust. Significantly
 
 **Uses**
-* `webpack.config.ts`
 * `gulpfile.ts`
-* Test files ending in **`.spec.ts`** in **`tests/`**.
-
-**Docs**
-* **[Official docs for @babel/core](https://babel.dev/docs/en/babel-core)**
+* All `.spec.ts` test files where babel was previously used.
 
 ---
 
-### [`@babel/preset-env`](https://www.npmjs.com/package/@babel/preset-env) `7.16.7`
-Babel 7+ package with base env settings.
+### [`@swc/jest`](https://www.npmjs.com/package/@swc/jest) `0.2.20`
+SWC Plugin enabling Jest to use SWC to transform files instead of Babel.
 
 **Uses**
-* **`babel.config.json`**
+* Anytime `yarn test` is run.
+* Used as `transform` in `jest.config.js`.
+* All `.spec.ts` test files where babel was previously used.
 
-**Docs**
-* **[Official docs for @babel/preset-env](https://babel.dev/docs/en/babel-preset-env)**
-
----
-### [`@babel/preset-typescript`](https://www.npmjs.com/package/@babel/preset-typescript) `7.16.7`
-Contains TypeScript transform plugin `@babel/plugin-transform-typescript` and other TypeScript transformation plugins.
-
-**Uses**
-* Activated by adding **`"@babel/transform-typescript"`** to the plugins Array in **`babel.config.json`**.
-	* *You may notice the plugin name `@babel/transform-typescript` in the babel config does not match the NPM package name `@babel/plugin-transform-typescript`. This is correct, and extremely confusing.*
-
-**Docs**
-* **[Official docs for @babel/preset-typescript](https://babeljs.io/docs/en/babel-preset-typescript)**
-
-
----
-
-### [`core-js`](https://www.npmjs.com/package/core-js) `3.20.1`
-Adds Polyfills for browser features. Needed by `babel` during transpilation, based on compatibility target. `core-js` has two major branches: version 2 and version 3. Use the latest v3 `core-js` release whenever possible unless a project needs a specific v2 feature or API.
-
-
-**Uses**
-* **`core-js`** version specified  in **`babel.config.json`**
-
----
-### [`eslint`](https://www.npmjs.com/package/eslint) `8.6.0`
+### [`eslint`](https://www.npmjs.com/package/eslint) `8.13.0`
 JavaScript & TypeScript linter which flags inconsistent formatting and styles.
 
 **Uses**
@@ -111,7 +84,7 @@ JavaScript & TypeScript linter which flags inconsistent formatting and styles.
 * Running command **`yarn lint`** or **`yarn eslint`**
 
 ---
-### [`eslint-config-prettier`](https://www.npmjs.com/package/eslint-config-prettier) `8.3.0`
+### [`eslint-config-prettier`](https://www.npmjs.com/package/eslint-config-prettier) `8.5.0`
 Turns off all rules that are unnecessary or might conflict with [Prettier].
 
 **Uses**
@@ -125,7 +98,7 @@ Runs Prettier as an ESLint rule and reports differences as individual ESLint iss
 * **`gulpfile.ts`**
 * Running command **`yarn lint`** or **`yarn eslint`**
 ---
-### [`fork-ts-checker-webpack-plugin`](https://www.npmjs.com/package/fork-ts-checker-webpack-plugin) `6.5.0`
+### [`fork-ts-checker-webpack-plugin`](https://www.npmjs.com/package/fork-ts-checker-webpack-plugin) `7.2.0`
 Speeds up TypeScript type checking and `ESLint` linting (by moving each to a separate process)
 
 **Uses**
@@ -142,7 +115,7 @@ Streaming task-based build system.
 
 ---
 
-### [`@toreda/build-tools`](https://www.npmjs.com/package/@toreda/build-tools) `0.6.0`
+### [`@toreda/build-tools`](https://www.npmjs.com/package/@toreda/build-tools) `0.7.0`
 Build scripts and Gulp pipelines for TypeScript project. Capable of building NPM packages, libraries, and command line apps. Acts as a Gulp wrapper, providing a single consistent build pipeline used by **`@toreda`** NPM projects.
 
 *Note: While this package can make your life easier it's not required for this package, but it's used in the default setup.*
@@ -185,7 +158,7 @@ If you removed also remove this key from `package.json`:
 
 ---
 
-### [`@toreda/types`](https://www.npmjs.com/package/@toreda/types) `2.5.0`
+### [`@toreda/types`](https://www.npmjs.com/package/@toreda/types) `2.11.0`
 Basic and common type definitions used in `@toreda` projects.
 
 **Use**
@@ -214,7 +187,16 @@ Type definitions for **`webpack`**. Package version generally always match the *
 * **`webpack.config.ts`**
 
 ---
-### [`@types/yargs`](https://www.npmjs.com/package/@types/yargs) `17.0.8`
+
+
+### [`@types/webpack-node-externals`](https://www.npmjs.com/package/@types/webpack-node-externals) `2.5.3`
+Type definitions for the **`webpack-node-externals`** webpack plugin. Provides typescript type hints for plugin configuration types.
+
+**Uses**
+* **`webpack.config.ts`**
+
+---
+### [`@types/yargs`](https://www.npmjs.com/package/@types/yargs) `17.0.10`
 Adds type support for **`yargs`** function calls.
 
 
@@ -253,7 +235,7 @@ Jest is included in the project's **`package.json`** as a **`devDependency`**, r
 Using Jest from **`package.json`** has a few benefits:
 * Package guaranteed available. No guessing whether it's installed or what version is installed.
 * The project controls the jest version.
-* TypeScript often requires additional types or packages to work with popular NPM packages. Jest + TypeScript currently needs **`ts-jest`**, **`ts-node`**, **`@babel/core`**, **`babel-jest`** and **`@types/jest`** (among others). Keeping package versions & package updates synchronized is tough task without surprise updates breaking testing.
+* TypeScript often requires additional types or packages to work with popular NPM packages. Jest + TypeScript currently needs **`ts-node`** and **`@types/jest`** (among others). Keeping package versions & package updates synchronized is tough task without surprise updates breaking testing.
 
 
 **Uses**
@@ -285,13 +267,6 @@ Uglify replacement focused on better speed and better performance.
 * All **`.spec.ts`** files in **`tests/`**
 
 ---
-### [`ts-loader`](https://www.npmjs.com/package/ts-node) `9.2.6`
-Execute `TypeScript` files without transpiling first.
-
-**Uses**
-* Any time in development when running or testing TypeScript files frequently.
-
----
 ### [`ts-node`](https://www.npmjs.com/package/ts-node) `10.4.0`
 Run node scripts directly from the command line without transpiling.
 
@@ -301,18 +276,7 @@ Run node scripts directly from the command line without transpiling.
 
 ---
 
-### [`ts-jest`](https://www.npmjs.com/package/ts-jest) `27.1.2`
-Run TypeScript test files directly from Jest.
-
-**Uses**
-* All **`.spec.ts`** files in **`tests/`**
-
-**Docs**
-* [Get started with TypeScript and Jest using ts-jest](https://kulshekhar.github.io/ts-jest/docs/)
-
----
-
-### [`typescript`](https://www.npmjs.com/package/typescript) `4.5.4`
+### [`typescript`](https://www.npmjs.com/package/typescript) `4.6.3`
 TypeScript package support with `tsconfig.json`.
 
 **Uses**
