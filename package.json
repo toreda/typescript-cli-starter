@@ -74,6 +74,7 @@
 	},
 	"prettier": "@toreda/prettier-config",
 	"resolutions": {
+		"async": "^3.2.2",
 		"set-value": "^4.0.1",
 		"glob-parent": "^5.1.2",
 		"lodash.template": "^4.5.0",

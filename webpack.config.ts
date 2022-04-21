@@ -60,6 +60,10 @@ const config: Configuration = {
 		libraryTarget: 'commonjs',
 		library: 'app'
 	},
+	/** Only extensions listed here will be bundled.
+	 *  IMPORTANT: Missing files dont always throw during build and may
+	 *  only break when the bundle is loaded. 
+	 */
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js']
 	},
@@ -67,15 +71,7 @@ const config: Configuration = {
 	module: {
 		rules: [
 			{
-				test: /\.m?js$/,
-				exclude: /(node_modules|bower_components)/,
-				use: {
-					// Use `.swcrc` to configure swc
-					loader: 'swc-loader'
-				}
-			},
-			{
-				test: /\.ts$/,
+				test: /^.+\\.(t|j)sx?$/,
 				exclude: /(node_modules|bower_components)/,
 				use: {
 					loader: 'swc-loader',

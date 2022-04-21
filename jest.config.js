@@ -6,9 +6,9 @@ module.exports = {
 		'node_modules/',
 		'.node/',
 		'jest/',
-		'coverage/',
 		'webpack.config.js'
 	],
+		'coverage/',
 	moduleFileExtensions: ['ts', 'js', 'json'],
 	moduleNameMapper: {'^src/(.*)': '<rootDir>/src/$1'},
 	testEnvironment: 'node',
