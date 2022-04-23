@@ -35,7 +35,7 @@ const argv = yargs(process.argv.slice(2))
 
 const isProd = argv.env === 'dev' ? false : true;
 
-log.info(`Shard Build with webpack `);
+log.info(`Webpack Build`);
 log.info(`-----------------------------`);
 log.info(`	build env:	${isProd ? 'prod' : 'dev'}`);
 log.info(`	profiler: 	${argv.profiler === true ? 'enabled' : 'disabled'}`);

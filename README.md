@@ -108,8 +108,8 @@ Yarn `resolutions` support selective package version overrides used by the proje
 ### [`@toreda/log`](https://www.npmjs.com/package/@toreda/log)
 
 TypeScript logger with small footprint & configurable transports.
-**Uses**
 
+**Uses**
 -   `gulpfile.ts`
 -   `@toreda/build-tools`
 -   `@toreda/strong-types`
