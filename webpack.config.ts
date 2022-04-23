@@ -73,16 +73,7 @@ const config: Configuration = {
 			{
 				test: /.+\.(t|j)sx?$/,
 				exclude: /(node_modules|bower_components)/,
-				use: {
-					loader: 'swc-loader',
-					options: {
-						jsc: {
-							parser: {
-								syntax: 'typescript'
-							}
-						}
-					}
-				}
+				use: 'swc-loader'
 			}
 		]
 	},

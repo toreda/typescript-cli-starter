@@ -24,19 +24,11 @@
 		"target": "es2015",
 		"traceResolution": false
 	},
-	"ts-jest": {
-		"module": "commonjs",
-		"compilerOptions": {
-		"declaration": false,
-		"isolatedModules": true,
-		"sourceMap": false,
-		"skipLibCheck": true
-		}
-	},
 	"ts-node": {
 		"module": "commonjs",
 		"compilerOptions": {
 			"sourceMap": false
-		}
+		},
+		"swc": true
 	}
 }

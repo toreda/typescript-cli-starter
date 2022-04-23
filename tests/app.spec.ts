@@ -21,4 +21,13 @@ describe('App', () => {
 			// empty
 		});
 	});
+
+	describe('Implementation', () => {
+		describe('start', () => {
+			it(`should return app instance`, async () => {
+				const result = await instance.start();
+				expect(result).toBe(instance);
+			});
+		});
+	});
 });

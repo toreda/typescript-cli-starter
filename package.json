@@ -1,21 +1,21 @@
 {
-	"name": "@toreda/template-typescript-cli-app",
-	"version": "0.0.0",
-	"description": "Complete project demo of a TypeScript CLI app.",
+	"name": "@toreda/cli-app-example",
+	"version": "0.0.1",
+	"description": "Command Line Interface (CLI) app example with TypeScript.",
 	"main": "./dist/index.js",
 	"scripts": {
 		"build": "yarn build:prod",
 		"build:prod": "yarn gulp --env prod",
 		"build:dev": "yarn gulp --env dev",
 		"test": "yarn jest --coverage",
-		"start": "yarn build & node ./dist/template-app.min.js",
+		"start": "yarn build & node ./dist/cli-app.min.js",
 		"lint": "yarn eslint ./src/**.ts --quiet",
 		"lint:fix": "yarn eslint ./src/**.ts --quiet --fix",
 		"make:docs": "yarn typedoc docs --categorizeByGroup false --entryPoints ./src/index.ts"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/toreda/template-typescript-cli-app.git"
+		"url": "git+https://github.com/toreda/cli-app-example.git"
 	},
 	"keywords": [
 		"demo",
@@ -30,9 +30,9 @@
 	"author": "Toreda, Inc.",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/toreda/template-typescript-cli-app/issues"
+		"url": "https://github.com/toreda/cli-app-example/issues"
 	},
-	"homepage": "https://github.com/toreda/template-typescript-cli-app#readme",
+	"homepage": "https://github.com/toreda/cli-app-example#readme",
 	"devDependencies": {
 		"@swc/core": "^1.2.170",
 		"@swc/jest": "^0.2.20",
@@ -49,7 +49,7 @@
 		"@types/yargs": "^17.0.10",
 		"@typescript-eslint/eslint-plugin": "^5.20.0",
 		"@typescript-eslint/parser": "^5.20.0",
-		"eslint": "^8.13.0",
+		"eslint": "^8.14.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"fork-ts-checker-webpack-plugin": "^7.2.6",
