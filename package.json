@@ -34,7 +34,7 @@
 	},
 	"homepage": "https://github.com/toreda/cli-app-example#readme",
 	"devDependencies": {
-		"@swc/core": "^1.2.170",
+		"@swc/core": "^1.2.171",
 		"@swc/jest": "^0.2.20",
 		"@toreda/build-tools": "^0.7.0",
 		"@toreda/eslint-config": "^2.2.0",
@@ -72,6 +72,7 @@
 	"prettier": "@toreda/prettier-config",
 	"resolutions": {
 		"async": "^3.2.2",
+		"chokidar": "^3.0.0",
 		"set-value": "^4.0.1",
 		"glob-parent": "^5.1.2",
 		"lodash.template": "^4.5.0",
