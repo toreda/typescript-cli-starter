@@ -55,7 +55,7 @@ const config: Configuration = {
 		 * impact for project bundling thousands of modules.
 		 * */
 		pathinfo: false,
-		filename: 'template-app.min.js',
+		filename: 'cli-app.min.js',
 		path: Path.join(__dirname, 'dist'),
 		libraryTarget: 'commonjs',
 		library: 'app'
