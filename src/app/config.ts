@@ -28,7 +28,7 @@ export class AppConfig extends StrongMap {
 		this._assertInitArgs(args, baseLog);
 		// Toreda Best Practice: Use one log instance project
 		// whenever possible.
-		this.log = baseLog.makeLog('AppConfig');
+		this.log = baseLog.makeLog('cfg');
 		this.env = strongMake<Env>(Defaults.Env);
 
 		// Recursively parse `args` looking for properties in AppConfig

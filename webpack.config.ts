@@ -3,7 +3,6 @@ import {Levels, Log} from '@toreda/log';
 
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import Path from 'path';
-import TerserPlugin from 'terser-webpack-plugin';
 import yargs from 'yargs';
 
 const log = new Log();
@@ -45,7 +44,7 @@ const plugins = [
 ];
 
 const config: Configuration = {
-	mode: isProd ? 'production' : 'development',
+	mode: argv.env === 'dev' ? 'development' : 'production',
 	devtool: isProd ? undefined : 'inline-source-map',
 	entry: './src/cli.ts',
 	output: {
@@ -54,7 +53,7 @@ const config: Configuration = {
 		 * recommends disabling this for large codebases due to the GC
 		 * impact for project bundling thousands of modules.
 		 * */
-		pathinfo: false,
+		pathinfo: true,
 		filename: 'cli-app.min.js',
 		path: Path.join(__dirname, 'dist'),
 		libraryTarget: 'commonjs',
@@ -71,56 +70,27 @@ const config: Configuration = {
 	module: {
 		rules: [
 			{
-				test: /.+\.(t|j)sx?$/,
-				exclude: /(node_modules|bower_components)/,
-				use: 'swc-loader'
+				// Include ts, tsx, js, and jsx files.
+				test: /\.(ts|js)x?$/,
+				use: {
+					loader: 'esbuild-loader',
+					options: {
+						loader: 'tsx',
+						target: 'esnext',
+						jsx: 'automatic'
+					}
+				}
 			}
 		]
 	},
 	target: 'node',
-	optimization: {
-		chunkIds: 'size',
-		moduleIds: 'size',
-		mangleExports: 'size',
-		minimize: isProd ? true : false,
-		removeAvailableModules: isProd ? true : false,
-		providedExports: isProd ? true : false,
-		usedExports: isProd ? true : false,
-		concatenateModules: isProd ? true : false,
-		innerGraph: isProd ? true : false,
-		splitChunks: {
-			chunks: 'async',
-			minSize: 20000,
-			minRemainingSize: 0,
-			minChunks: 1,
-			maxAsyncRequests: 30,
-			maxInitialRequests: 30,
-			enforceSizeThreshold: 50000,
-			cacheGroups: {
-				defaultVendors: {
-					test: /[\\/]node_modules[\\/]/,
-					priority: -10,
-					reuseExistingChunk: true
-				},
-				default: {
-					minChunks: 2,
-					priority: -20,
-					reuseExistingChunk: true
-				}
-			}
-		},
-		minimizer: [
-			new TerserPlugin({
-				test: /\.js(\?.*)?$/i,
-				parallel: true,
-				terserOptions: {
-					compress: false,
-					mangle: true
-				}
-			})
-		]
+	plugins: plugins,
+	externalsPresets: {
+		node: true
 	},
-	plugins: plugins
+	node: {
+		global: false
+	}
 };
 
 export default config;
