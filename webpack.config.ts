@@ -5,9 +5,11 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import Path from 'path';
 import yargs from 'yargs';
 
-const log = new Log();
-log.activateDefaultConsole();
-log.setGlobalLevel(Levels.INFO | Levels.DEBUG);
+const log = new Log({
+	consoleEnabled: true,
+	groupsStartEnabled: true,
+	globalLevel: Levels.ALL
+});
 
 interface BuildCmdArgs {
 	[k: string]: unknown;
@@ -38,10 +40,6 @@ log.info(`Webpack Build`);
 log.info(`-----------------------------`);
 log.info(`	build env:	${isProd ? 'prod' : 'dev'}`);
 log.info(`	profiler: 	${argv.profiler === true ? 'enabled' : 'disabled'}`);
-const plugins = [
-	new BannerPlugin({banner: '#!/usr/bin/env node', raw: true}),
-	new ForkTsCheckerWebpackPlugin()
-];
 
 const config: Configuration = {
 	mode: argv.env === 'dev' ? 'development' : 'production',
@@ -84,7 +82,7 @@ const config: Configuration = {
 		]
 	},
 	target: 'node',
-	plugins: plugins,
+	plugins: [new BannerPlugin({banner: '#!/usr/bin/env node', raw: true}), new ForkTsCheckerWebpackPlugin()],
 	externalsPresets: {
 		node: true
 	},
