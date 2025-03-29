@@ -1,25 +1,23 @@
 ![Toreda](https://content.toreda.com/logo/toreda-logo.png)
 
-[![CI](https://img.shields.io/github/workflow/status/toreda/cli-app-example/CI?style=for-the-badge)](https://github.com/toreda/cli-app-example/actions) [![Coverage](https://img.shields.io/sonar/coverage/toreda_cli-app-example?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/project/activity?graph=coverage&id=toreda_cli-app-example) [![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/toreda_cli-app-example?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=toreda_cli-app-example)
+[![CI](https://img.shields.io/github/workflow/status/toreda/typescript-cli-starter/CI?style=for-the-badge)](https://github.com/toreda/typescript-cli-starter/actions) [![Coverage](https://img.shields.io/sonar/coverage/toreda_typescript-cli-starter?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/project/activity?graph=coverage&id=toreda_typescript-cli-starter) [![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/toreda_typescript-cli-starter?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=toreda_typescript-cli-starter)
 
-[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/toreda/cli-app-example/master?style=for-the-badge)](https://github.com/toreda/cli-app-example/releases/latest) [![GitHub Release Date](https://img.shields.io/github/release-date/toreda/cli-app-example?style=for-the-badge)](https://github.com/toreda/cli-app-example/releases/latest) [![GitHub issues](https://img.shields.io/github/issues/toreda/cli-app-example?style=for-the-badge)](https://github.com/toreda/cli-app-example/issues)
+[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/toreda/typescript-cli-starter/master?style=for-the-badge)](https://github.com/toreda/typescript-cli-starter/releases/latest) [![GitHub Release Date](https://img.shields.io/github/release-date/toreda/typescript-cli-starter?style=for-the-badge)](https://github.com/toreda/typescript-cli-starter/releases/latest) [![GitHub issues](https://img.shields.io/github/issues/toreda/typescript-cli-starter?style=for-the-badge)](https://github.com/toreda/typescript-cli-starter/issues)
 
-[![license](https://img.shields.io/github/license/toreda/cli-app-example?style=for-the-badge)](https://github.com/toreda/cli-app-example/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/toreda/typescript-cli-starter?style=for-the-badge)](https://github.com/toreda/typescript-cli-starter/blob/master/LICENSE)
 
 &nbsp;
 
-# `@toreda/cli-app-example`
-## Command Line App Example
+# `@toreda/typescript-cli-starter`
+## Command line (CLI) starter app project
 Command Line Interface (CLI) app example using TypeScript. Produces a self-contained bundle file which can be installed and execute via command line.
 
 &nbsp;
 
-# Project Tech
+# Starter Features
 
-## [TypeScript](https://www.typescriptlang.org/)
-*JavaScript with syntax for types.*
-
-### Features
+## Features
+- Unit tests with Jest.
 -  TypeScript adds additional syntax to JavaScript to support a tighter integration with your editor. Catch errors early in your editor.
 -  TypeScript understands JavaScript and uses type inference to give you great tooling without additional code.
 
@@ -438,7 +436,7 @@ TypeScript package support with `tsconfig.json`.
 
 &nbsp;
 ## Copyright
-Copyright &copy; 2019 - 2022 Toreda, Inc. All Rights Reserved.
+Copyright &copy; 2019 - 2025 Toreda, Inc. All Rights Reserved.
 
 
 &nbsp;
