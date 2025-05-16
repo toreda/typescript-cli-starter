@@ -97,7 +97,7 @@ We recommend `yarn` to manage project packages. Although you can use `npm instal
 
 ### *What are resolutions?*
 
-Yarn `resolutions` support selective package version overrides used by the project & dependencies.
+Yarn `resolutions` allow per-package version overrides. All dependencies use the specified package version.
 
 ### *Why are there packages in the `resolutions` field?*
 

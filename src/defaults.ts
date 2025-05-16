@@ -5,5 +5,9 @@ import type {Env} from './env';
  *
  */
 export class Defaults {
+	public static App = {
+		Loaded: false as const,
+		Running: false as const
+	} as const;
 	public static Env: Env = 'prod' as const;
 }
