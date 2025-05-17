@@ -9,20 +9,17 @@
 &nbsp;
 
 # `@toreda/typescript-cli-starter`
-## Command line (CLI) starter app project
+## Command line (CLI) app template
 Command Line Interface (CLI) app example using TypeScript. Produces a self-contained bundle file which can be installed and execute via command line.
 
 &nbsp;
 
-# Starter Features
-
-## Features
+# Template Features
 - Unit tests with Jest.
 -  TypeScript adds additional syntax to JavaScript to support a tighter integration with your editor. Catch errors early in your editor.
 -  TypeScript understands JavaScript and uses type inference to give you great tooling without additional code.
 
 &nbsp;
-
 
 ## [Speedy Web Compiler (SWC)](https://swc.rs/)
 *WC is an extensible Rust-based platform for the next generation of fast developer tools. It's used by tools like Next.js, Parcel, and Deno, as well as companies like Vercel, ByteDance, Tencent, Shopify, and more.*
@@ -428,6 +425,21 @@ TypeScript package support with `tsconfig.json`.
 -   Using `ts-loader`
 
 &nbsp;
+
+# Client Lifecycle
+Lifecycle methods are like checkpoints that execute logic at each step in the client's lifecycle flow.
+
+## `Init Phase`
+Init
+
+The async init methods are called in the following order:
+### 1. `clientWillInit`
+### 2. `clientOnInit`
+### 3. `clientDidInit`
+
+## `Load Phase`
+
+
 
 # Legal
 

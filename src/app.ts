@@ -49,9 +49,11 @@ export class App implements ClientDelegate {
 
 		this.loaded(true);
 		return this;
-
 	}
 
+	/**
+	 * Start the app. Ignores all start calls after app is running.
+	 */
 	public async start(): Promise<App> {
 		// Ignore dupe calls after app start. Lifecycle phases maintain their own flags
 		// to prevent dupe calls, but other logic here isn't protected without the check.
@@ -59,7 +61,7 @@ export class App implements ClientDelegate {
 			return this;
 		}
 
-		this.log.info(`CLI App starting..`);
+		this.log.info(`Starting app..`);
 		await this.load();
 		await clientPhase('clientWillStart', this);
 		await clientPhase('clientOnStart', this);
@@ -68,6 +70,8 @@ export class App implements ClientDelegate {
 		await clientPhase('clientWillBecomeReady', this);
 		await clientPhase('clientOnReady', this);
 		await clientPhase('clientDidBecomeReady', this);
+		this.log.info(`App started.`);
+		this.running(true);
 
 		return this;
 	}
